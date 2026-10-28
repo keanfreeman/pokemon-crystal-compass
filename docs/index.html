@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pokémon Crystal Compass Patcher</title>
+<meta name="description" content="Patch your own Pokémon HeartGold (US) ROM into Pokémon Crystal Compass, in your browser.">
+<style>
+  :root {
+    --bg: #f4f7fb; --card: #ffffff; --text: #1b2433; --muted: #5a6577;
+    --accent: #2f6fd6; --accent-text: #ffffff; --line: #d8e0ec;
+    --ok: #1f7a4a; --bad: #b3261e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1520; --card: #172031; --text: #e6ecf5; --muted: #9aa7bb;
+      --accent: #6aa0ff; --accent-text: #0f1520; --line: #2a3650;
+      --ok: #5fd197; --bad: #ff8a80;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-size: 1.9rem; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .version { color: var(--muted); margin: 0 0 28px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px; margin-bottom: 20px;
+  }
+  .card h2 { font-size: 1.05rem; margin: 0 0 8px; }
+  .card p { margin: 0 0 12px; color: var(--muted); }
+  code { font-size: 0.85em; word-break: break-all; }
+  label.file {
+    display: block; border: 2px dashed var(--line); border-radius: 10px;
+    padding: 22px 16px; text-align: center; cursor: pointer;
+  }
+  label.file:hover, label.file.drag { border-color: var(--accent); }
+  input[type=file] { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  button {
+    background: var(--accent); color: var(--accent-text); border: 0; border-radius: 8px;
+    padding: 12px 18px; font: inherit; font-weight: 600; cursor: pointer; width: 100%;
+  }
+  button:disabled { opacity: 0.45; cursor: default; }
+  #status { min-height: 1.5em; margin: 14px 0 0; }
+  #status.ok { color: var(--ok); }
+  #status.bad { color: var(--bad); }
+  footer { color: var(--muted); font-size: 0.85rem; margin-top: 32px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Pokémon Crystal Compass</h1>
+  <p class="version">Version 0.1.0 · <a href="https://github.com/keanfreeman/pokemon-crystal-compass">About the hack</a></p>
+
+  <div class="card">
+    <h2>1. Choose your HeartGold ROM</h2>
+    <p>An unmodified <strong>Pokémon HeartGold (USA)</strong> ROM, dumped from your own cartridge.
+      It stays on your computer: patching happens in this page.</p>
+    <label class="file" id="drop">
+      <input type="file" id="rom" accept=".nds">
+      <span id="romName">Click to choose a <code>.nds</code> file, or drop it here</span>
+    </label>
+  </div>
+
+  <div class="card">
+    <h2>2. Patch it</h2>
+    <p>You'll get <code>Pokemon Crystal Compass v0.1.0.nds</code>. Play it in melonDS or on a DS, and start a new game.</p>
+    <button id="go" disabled>Patch and download</button>
+    <p id="status" role="status"></p>
+  </div>
+
+  <footer>
+    Prefer a desktop tool? Download the <code>.bps</code> patch from the
+    <a href="https://github.com/keanfreeman/pokemon-crystal-compass/releases">releases</a> and apply it with Flips.
+    The clean ROM's SHA-1 is <code>4fcded0e2713dc03929845de631d0932ea2b5a37</code>.
+    <br>Pokémon is © Nintendo, Game Freak and Creatures. This is a free fan project.
+  </footer>
+</main>
+<script type="module">
+import { applyBps, sha1 } from './patcher.js';
+
+const BASE_SHA1 = '4fcded0e2713dc03929845de631d0932ea2b5a37';
+const TARGET_SHA1 = '6f3b5144e071191a67e4b401d90083cc304df90d';
+const PATCH = 'Pokemon-Crystal-Compass-v0.1.0.bps';
+const OUTPUT = 'Pokemon Crystal Compass v0.1.0.nds';
+
+const romInput = document.getElementById('rom');
+const drop = document.getElementById('drop');
+const romName = document.getElementById('romName');
+const go = document.getElementById('go');
+const status = document.getElementById('status');
+let rom = null;
+
+function say(text, kind = '') {
+  status.textContent = text;
+  status.className = kind;
+}
+
+async function choose(file) {
+  rom = null;
+  go.disabled = true;
+  if (!file) return;
+  romName.textContent = file.name;
+  say('Checking the ROM…');
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  const hash = await sha1(bytes);
+  if (hash !== BASE_SHA1) {
+    say('This isn\'t an unmodified HeartGold (USA) ROM (its SHA-1 is ' + hash +
+        '). Other regions, SoulSilver, trimmed or already-patched ROMs won\'t work.', 'bad');
+    return;
+  }
+  rom = bytes;
+  go.disabled = false;
+  say('That\'s the right ROM.', 'ok');
+}
+
+romInput.addEventListener('change', () => choose(romInput.files[0]));
+drop.addEventListener('dragover', (e) => { e.preventDefault(); drop.classList.add('drag'); });
+drop.addEventListener('dragleave', () => drop.classList.remove('drag'));
+drop.addEventListener('drop', (e) => {
+  e.preventDefault();
+  drop.classList.remove('drag');
+  choose(e.dataTransfer.files[0]);
+});
+
+go.addEventListener('click', async () => {
+  go.disabled = true;
+  try {
+    say('Downloading the patch…');
+    const response = await fetch(PATCH);
+    if (!response.ok) throw new Error('Couldn\'t download the patch (' + response.status + ').');
+    const patch = new Uint8Array(await response.arrayBuffer());
+    say('Patching…');
+    await new Promise((resolve) => setTimeout(resolve, 20));   // let the message show
+    const out = applyBps(rom, patch);
+    if (await sha1(out) !== TARGET_SHA1) throw new Error('Patching went wrong (unexpected result).');
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(new Blob([out], { type: 'application/octet-stream' }));
+    link.download = OUTPUT;
+    link.click();
+    say('Done! Saved ' + OUTPUT + '.', 'ok');
+  } catch (err) {
+    say(err.message, 'bad');
+  } finally {
+    go.disabled = rom === null;
+  }
+});
+</script>
+</body>
+</html>
