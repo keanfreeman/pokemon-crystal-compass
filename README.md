@@ -271,6 +271,8 @@ badges, but never drops below its usual level.
   decompilation.
 - Inspired by the open world of Pokémon Crystal Clear.
 - Tested with melonDS.
+- This project was mostly vibe coded, for anyone who would like to know
+  that.
 
 Pokémon is © Nintendo, Game Freak and Creatures. Crystal Compass is a free,
 non-commercial fan project and isn't affiliated with them. Please don't
