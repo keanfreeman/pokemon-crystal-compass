@@ -21,7 +21,7 @@ patch, so you apply it to your own copy of HeartGold.
   <img src="docs/img/tuner.png" width="256" alt="The tuner changes a Pokémon's nature, ability, IVs or EVs">
 </p>
 
-**Version 0.1.0** · [Patch your ROM in the browser](https://keanfreeman.github.io/pokemon-crystal-compass/) ·
+**Version 0.1.1** · [Patch your ROM in the browser](https://keanfreeman.github.io/pokemon-crystal-compass/) ·
 [Download the patch](https://github.com/keanfreeman/pokemon-crystal-compass/releases/latest) ·
 [Report a bug](https://github.com/keanfreeman/pokemon-crystal-compass/issues/new/choose)
 
@@ -58,7 +58,7 @@ trimmed ROM.
 1. Open the **[web patcher](https://keanfreeman.github.io/pokemon-crystal-compass/)**, choose your ROM and click *Patch
    and download*. It checks the ROM for you, and nothing is uploaded.
 
-   *Or* download `Pokemon-Crystal-Compass-v0.1.0.bps` from the
+   *Or* download `Pokemon-Crystal-Compass-v0.1.1.bps` from the
    [latest release](https://github.com/keanfreeman/pokemon-crystal-compass/releases/latest) and apply
    it with [Flips](https://github.com/Alcaro/Flips) or another BPS patcher.
 2. Play the patched ROM in [melonDS](https://melonds.kuribo64.net/) or on a
@@ -67,7 +67,7 @@ trimmed ROM.
    Crystal Compass aren't supported.
 
 Clean ROM SHA-1: `4fcded0e2713dc03929845de631d0932ea2b5a37`<br>
-Patched ROM SHA-1: `6f3b5144e071191a67e4b401d90083cc304df90d`
+Patched ROM SHA-1: `5d1f1394cb1578f71261f40d5c776ca71c2dfd24`
 
 ## Questions
 
@@ -255,8 +255,11 @@ badges, but never drops below its usual level.
 
 ### Randomizer
 - Chosen at the start. Wild, Trainer, set-encounter, starter, gift and Egg
-  Pokémon are swapped for others of similar strength. Legendaries stay as
-  they are.
+  Pokémon are swapped for others of similar strength, legendaries
+  included: Lugia's chamber or Mew's pier holds some other strong Pokémon
+  (at the legendary's level), and legendaries can turn up anywhere a strong
+  Pokémon would. The roaming Raikou, Entei, Latias and Latios stay
+  themselves.
 - Everything above still works, on whatever species you get.
 
 </details>

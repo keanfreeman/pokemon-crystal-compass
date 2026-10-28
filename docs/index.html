@@ -54,7 +54,7 @@
 <body>
 <main>
   <h1>Pokémon Crystal Compass</h1>
-  <p class="version">Version 0.1.0 · <a href="https://github.com/keanfreeman/pokemon-crystal-compass">About the hack</a></p>
+  <p class="version">Version 0.1.1 · <a href="https://github.com/keanfreeman/pokemon-crystal-compass">About the hack</a></p>
 
   <div class="card">
     <h2>1. Choose your HeartGold ROM</h2>
@@ -68,7 +68,7 @@
 
   <div class="card">
     <h2>2. Patch it</h2>
-    <p>You'll get <code>Pokemon Crystal Compass v0.1.0.nds</code>. Play it in melonDS or on a DS, and start a new game.</p>
+    <p>You'll get <code>Pokemon Crystal Compass v0.1.1.nds</code>. Play it in melonDS or on a DS, and start a new game.</p>
     <button id="go" disabled>Patch and download</button>
     <p id="status" role="status"></p>
   </div>
@@ -84,9 +84,9 @@
 import { applyBps, sha1 } from './patcher.js';
 
 const BASE_SHA1 = '4fcded0e2713dc03929845de631d0932ea2b5a37';
-const TARGET_SHA1 = '6f3b5144e071191a67e4b401d90083cc304df90d';
-const PATCH = 'Pokemon-Crystal-Compass-v0.1.0.bps';
-const OUTPUT = 'Pokemon Crystal Compass v0.1.0.nds';
+const TARGET_SHA1 = '5d1f1394cb1578f71261f40d5c776ca71c2dfd24';
+const PATCH = 'Pokemon-Crystal-Compass-v0.1.1.bps';
+const OUTPUT = 'Pokemon Crystal Compass v0.1.1.nds';
 
 const romInput = document.getElementById('rom');
 const drop = document.getElementById('drop');
