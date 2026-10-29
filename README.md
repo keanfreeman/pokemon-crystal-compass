@@ -19,6 +19,9 @@ patch, so you apply it to your own copy of HeartGold.
   <img src="docs/img/start-town.gif" width="256" alt="The new game asks where to start: Kanto (east), then Saffron, and the player is in Saffron">
   <img src="docs/img/walks.gif" width="256" alt="The Day-Care man's Walks: pick a course and send a Pokémon off, as on the Pokéwalker">
 </p>
+<p>
+  <img src="docs/img/walk-journal.gif" width="256" alt="The Day-Care man sends a Pokémon on a Walk and gives the Walk Journal; later the key item in the Bag opens the Pokéwalker's journal of the walk, with its steps and watts">
+</p>
 
 **Version 0.1.1** · [Patch your ROM in the browser](https://keanfreeman.github.io/pokemon-crystal-compass/) ·
 [Download the patch](https://github.com/keanfreeman/pokemon-crystal-compass/releases/latest) ·
