@@ -10,15 +10,14 @@ patch, so you apply it to your own copy of HeartGold.
 
 <p>
   <img src="docs/img/title.png" width="256" alt="Title screen">
-  <img src="docs/img/wandering.png" width="256" alt="A wild Pidgey in the grass spots the player">
 </p>
 <p>
-  <img src="docs/img/start-anywhere.png" width="256" alt="The new game asks where to start your journey: Johto or Kanto, west or east">
-  <img src="docs/img/randomizer.png" width="256" alt="With the randomizer, the starter choice is Magby, Kadabra or Flaaffy">
+  <img src="docs/img/chase.gif" width="256" alt="A wild Sentret in the grass spots the player, shows a !, and chases them into a battle">
+  <img src="docs/img/wandering.gif" width="256" alt="Wild Pokémon wander through Route 29's grass">
 </p>
 <p>
-  <img src="docs/img/walks.png" width="256" alt="The Day-Care man's Walks: spend watts on an item or a Pokémon from the course">
-  <img src="docs/img/tuner.png" width="256" alt="The tuner changes a Pokémon's nature, ability, IVs or EVs">
+  <img src="docs/img/start-town.gif" width="256" alt="The new game asks where to start: Kanto (east), then Saffron, and the player is in Saffron">
+  <img src="docs/img/walks.gif" width="256" alt="The Day-Care man's Walks: pick a course and send a Pokémon off, as on the Pokéwalker">
 </p>
 
 **Version 0.1.1** · [Patch your ROM in the browser](https://keanfreeman.github.io/pokemon-crystal-compass/) ·
